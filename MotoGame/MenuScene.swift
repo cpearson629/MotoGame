@@ -6,6 +6,7 @@ final class MenuScene: SKScene {
     private var uiBuilt = false
 
     override func didMove(to view: SKView) {
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
         backgroundColor = UIColor(red: 0.10, green: 0.28, blue: 0.10, alpha: 1)
     }
 
