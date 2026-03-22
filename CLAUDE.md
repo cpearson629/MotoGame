@@ -2,7 +2,7 @@
 
 ## Overview
 
-iOS SpriteKit motorcycle racing game. Single-touch joystick controls a motorcycle around a top-down oval track. Built with Swift 6 / strict concurrency.
+iOS SpriteKit motorcycle racing game. Player selects a track from a menu, then controls a motorcycle around a top-down oval track using a single-touch joystick. Built with Swift 6 / strict concurrency.
 
 **Build:** `xcodegen generate` → open `MotoGame.xcodeproj` → run on simulator or device.
 
@@ -13,16 +13,23 @@ iOS SpriteKit motorcycle racing game. Single-touch joystick controls a motorcycl
 | File | Responsibility |
 |------|---------------|
 | `project.yml` | XcodeGen config — orientations, deployment target, build settings |
-| `AppDelegate.swift` | Boilerplate UIApplicationDelegate |
-| `GameViewController.swift` | Hosts SKView, presents GameScene, declares supported orientations |
-| `GameScene.swift` | Root SKScene — world setup, camera, HUD, touch routing, game loop |
+| `AppDelegate.swift` | Boilerplate UIApplicationDelegate, creates UIWindow |
+| `GameViewController.swift` | Hosts SKView, presents MenuScene on launch |
+| `MenuScene.swift` | Track selection UI — 3 cards, tap to start GameScene |
+| `GameScene.swift` | Root game SKScene — world, camera, HUD, touch, game loop |
 | `Motorcycle.swift` | Physics/state: speed, heading, lean, position, sprite rotation |
 | `InputController.swift` | Converts raw touch offset → `InputState` (throttle/brake/lean 0–1) |
-| `Track.swift` | Static oval track geometry drawn with SKShapeNode |
+| `TrackConfig.swift` | Struct defining per-track data; 3 static configs (`.classic`, `.speedway`, `.stadium`) |
+| `Track.swift` | Draws a track from a `TrackConfig` using SKShapeNode |
 
 ---
 
 ## Architecture
+
+### Scene Flow
+`MenuScene` → (tap card) → `GameScene(size:trackConfig:)` → (tap ‹ Menu) → `MenuScene`
+
+Both transitions use `SKTransition.fade(withDuration: 0.4)`.
 
 ### Coordinate conventions
 - **World:** SpriteKit standard (Y up). `bikeHeading = 0` → moving in +Y direction.
@@ -35,9 +42,26 @@ iOS SpriteKit motorcycle racing game. Single-touch joystick controls a motorcycl
 - Together these make the sprite face its direction of travel with a lean tilt.
 
 ### Input → game loop
-1. `GameScene` receives `UITouch`, passes UIKit location + view center to `InputController.update()`
-2. `InputController` computes `InputState` (throttle/brake/lean) and `touchOffsetInScreen` for HUD
-3. `GameScene.update()` passes `inputController.state` to `motorcycle.update(dt:input:)`
+1. `GameScene` receives `UITouch`, checks if it's on the menu button first
+2. Otherwise passes UIKit location + computed center to `InputController.update()`
+3. `InputController` computes `InputState` and `touchOffsetInScreen` for HUD dot
+4. `GameScene.update()` passes `inputController.state` to `motorcycle.update(dt:input:)`
+
+---
+
+## TrackConfig
+
+Defined in `TrackConfig.swift`. All tracks use `roadWidth: 240` (~3x the original 80pt).
+
+| Track | outerWidth | outerHeight | cornerRadius | Character |
+|-------|-----------|------------|-------------|-----------|
+| Classic | 1400 | 900 | 280 | Balanced oval, sweeping corners |
+| Speedway | 2600 | 750 | 250 | Very long straights, high speed |
+| Stadium | 900 | 2200 | 330 | Tall hairpins, technical |
+
+`startPosition` is always the midpoint of the bottom straight: `(0, -outerHeight/2 + roadWidth/2)`.
+
+`TrackConfig.all` is the ordered array used by MenuScene to render cards.
 
 ---
 
@@ -58,58 +82,58 @@ iOS SpriteKit motorcycle racing game. Single-touch joystick controls a motorcycl
 | Constant | Value | Notes |
 |----------|-------|-------|
 | deadZone | 10 pt | circular — `hypot(dx,dy) > deadZone` |
-| maxRadius | 80 pt | each axis clamped independently (square boundary) |
-
-### Track (`Track.swift`)
-| Constant | Value |
-|----------|-------|
-| outerWidth | 900 pt |
-| outerHeight | 700 pt |
-| roadWidth | 80 pt |
-| corner radius | 60 pt |
+| maxX | 170 pt | horizontal axis clamp (square boundary) |
+| maxY | 104 pt | vertical axis clamp (square boundary) |
 
 ---
 
 ## HUD
 
-Drawn as children of `cameraNode` (screen-fixed):
+Drawn as children of `cameraNode` (screen-fixed). Joystick elements are grouped under `joystickNode`.
 
-- **`boundarySquare`** — `160×160` pt square outline (±80 pt), strokeColor white 40% alpha. Represents the input zone edges.
-- **`crosshairNode`** — ±20 pt crosshair lines at screen center.
-- **`inputDotNode`** — 8 pt radius circle. Position = `touchOffsetInScreen` directly (maxRadius = 80 pt = box half-size, no scaling needed). Color: green = throttle, red = brake, white = neutral/lean only.
+- **`joystickNode`** — container, positioned at `(0, -joystickYOffset)`. Offset computed in `didChangeSize`: `size.height/2 - 104 - 20` so the bottom edge sits 20pt above the screen bottom.
+- **`boundarySquare`** — `340×208` pt rectangle outline (±170 x, ±104 y). Edges = full input.
+- **`crosshairNode`** — ±20 pt crosshair at joystick center.
+- **`inputDotNode`** — 8 pt radius circle. Position = `touchOffsetInScreen` directly. Green = throttle, red = brake, white = neutral.
+- **`menuButton`** — "‹ Menu" label, top-left corner of camera view. Updated each frame to `(-size.width/2 + 20, size.height/2 - 20)`.
 
 ---
 
-## Input Scheme (square joystick)
+## Input Scheme (rectangular joystick)
 
 ```
 dx = touch.x - center.x   (UIKit)
 dy = touch.y - center.y   (UIKit, positive = down)
+center = (view.midX, view.midY + joystickYOffset)
 
 // Deadzone (circular)
 guard hypot(dx, dy) > 10 else { return neutral }
 
-// Square clamp (each axis independent, matches box size)
-clampedDx = clamp(dx, -80, 80)
-clampedDy = clamp(dy, -80, 80)
+// Rectangular clamp
+clampedDx = clamp(dx, -170, 170)
+clampedDy = clamp(dy, -104, 104)
 
-lean     = clampedDx / 80          // -1 (left) … +1 (right)
-throttle = clampedDy < 0 ? -clampedDy/80 : 0   // finger above center
-brake    = clampedDy > 0 ?  clampedDy/80 : 0   // finger below center
+lean     = clampedDx / 170         // -1 (left) … +1 (right)
+throttle = clampedDy < 0 ? -clampedDy/104 : 0   // finger above center
+brake    = clampedDy > 0 ?  clampedDy/104 : 0   // finger below center
 ```
 
 ---
 
-## Orientation
+## Orientation & Full-Screen
 
-Portrait only. Set in two places (must match):
+Portrait only. Set in three places (must all match):
 1. `project.yml` → `SUPPORTED_INTERFACE_ORIENTATIONS_IPHONE: UIInterfaceOrientationPortrait`
 2. `GameViewController.swift` → `supportedInterfaceOrientations` returns `.portrait`
+3. `Info.plist` → `UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]`
+
+Full-screen: `loadView()` creates `SKView(frame: UIScreen.main.bounds)`. `Info.plist` has `UILaunchScreen: {}` so iOS doesn't letterbox the app.
 
 ---
 
 ## Build Notes
 
-- Swift 6 strict concurrency — all game state touched only on the main actor (SKScene/SKNode are main-thread).
+- Swift 6 strict concurrency — all game state touched only on the main actor.
 - `xcodegen generate` must be re-run after any `project.yml` change.
-- No storyboards or XIBs — `GameViewController.loadView()` creates the SKView programmatically.
+- No storyboards or XIBs — everything is programmatic.
+- New source files must appear in `MotoGame/` directory; XcodeGen picks them up automatically.

@@ -13,7 +13,9 @@
 		5C6E8C22871CCEF29C5962B7 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5E0CE7E24EA1FAECB14E8 /* Track.swift */; };
 		64B851826933E593F48CC2D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB78846E44ADF0F8A55CF0C /* AppDelegate.swift */; };
 		673E8132C70E2388B2713626 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF03FD557E00E193435C24 /* GameScene.swift */; };
+		942DB6A46B5AF5FB7AAA1E25 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D34E5358642BD68C31E65C7 /* MenuScene.swift */; };
 		A468F9D796984B9F4D995B9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC0404C18209C8DEC2E4A365 /* Assets.xcassets */; };
+		E620ACE28144E858F388ABDC /* TrackConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92E17617AEC2123FB667832 /* TrackConfig.swift */; };
 		EAE8C2F0F18ABA6F4B8E23AB /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7095C72C7C18C92D94B6BBD /* InputController.swift */; };
 /* End PBXBuildFile section */
 
@@ -22,11 +24,13 @@
 		1BF5E0CE7E24EA1FAECB14E8 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		87CD059FCA0BDBDA45FEEFCF /* Motorcycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motorcycle.swift; sourceTree = "<group>"; };
 		89D2C7C1E7799F04504666F6 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		8D34E5358642BD68C31E65C7 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		921C56AEDEB560707310FC65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		97C0E3094DFE83C7E13A6269 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		AC0404C18209C8DEC2E4A365 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3965DEDFFA62B23003BF453 /* MotoGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotoGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7095C72C7C18C92D94B6BBD /* InputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
+		C92E17617AEC2123FB667832 /* TrackConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackConfig.swift; sourceTree = "<group>"; };
 		D5BF03FD557E00E193435C24 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,8 +72,10 @@
 				89D2C7C1E7799F04504666F6 /* GameViewController.swift */,
 				921C56AEDEB560707310FC65 /* Info.plist */,
 				B7095C72C7C18C92D94B6BBD /* InputController.swift */,
+				8D34E5358642BD68C31E65C7 /* MenuScene.swift */,
 				87CD059FCA0BDBDA45FEEFCF /* Motorcycle.swift */,
 				1BF5E0CE7E24EA1FAECB14E8 /* Track.swift */,
+				C92E17617AEC2123FB667832 /* TrackConfig.swift */,
 			);
 			path = MotoGame;
 			sourceTree = "<group>";
@@ -152,8 +158,10 @@
 				673E8132C70E2388B2713626 /* GameScene.swift in Sources */,
 				07A69EE57B32BC3CE19B8BC0 /* GameViewController.swift in Sources */,
 				EAE8C2F0F18ABA6F4B8E23AB /* InputController.swift in Sources */,
+				942DB6A46B5AF5FB7AAA1E25 /* MenuScene.swift in Sources */,
 				0479E4FC3F657F68A1CCFD81 /* Motorcycle.swift in Sources */,
 				5C6E8C22871CCEF29C5962B7 /* Track.swift in Sources */,
+				E620ACE28144E858F388ABDC /* TrackConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

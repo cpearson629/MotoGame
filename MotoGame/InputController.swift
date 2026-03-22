@@ -11,7 +11,8 @@ struct InputState {
 
 final class InputController {
     private let deadZone: CGFloat = 10
-    private let maxRadius: CGFloat = 80
+    private let maxX: CGFloat = 170  // half-width  (~340pt total, near screen width)
+    private let maxY: CGFloat = 104  // half-height (208pt total, 30% taller)
 
     private(set) var state: InputState = .neutral
     private(set) var touchOffsetInScreen: CGPoint = .zero  // for HUD dot
@@ -28,12 +29,12 @@ final class InputController {
             return
         }
 
-        let clampedDx = max(-maxRadius, min(maxRadius, dx))
-        let clampedDy = max(-maxRadius, min(maxRadius, dy))
+        let clampedDx = max(-maxX, min(maxX, dx))
+        let clampedDy = max(-maxY, min(maxY, dy))
 
-        let lean     = Float(clampedDx / maxRadius)
-        let throttle = clampedDy < 0 ? Float(-clampedDy / maxRadius) : 0
-        let brake    = clampedDy > 0 ? Float( clampedDy / maxRadius) : 0
+        let lean     = Float(clampedDx / maxX)
+        let throttle = clampedDy < 0 ? Float(-clampedDy / maxY) : 0
+        let brake    = clampedDy > 0 ? Float( clampedDy / maxY) : 0
 
         state = InputState(throttle: throttle, brake: brake, lean: lean)
 

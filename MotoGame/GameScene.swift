@@ -3,19 +3,22 @@ import UIKit
 
 final class GameScene: SKScene {
 
+    // MARK: - Track
+    private let trackConfig: TrackConfig
+
     // MARK: - Nodes
     private let worldNode  = SKNode()
     private let motorcycle = Motorcycle()
-    private let track      = Track()
     private let cameraNode = SKCameraNode()
 
     // HUD
     private let joystickNode   = SKNode()
     private let crosshairNode  = SKNode()
     private let inputDotNode   = SKShapeNode(circleOfRadius: 8)
-    private let boundarySquare = SKShapeNode(rect: CGRect(x: -80, y: -80, width: 160, height: 160))
+    private let boundarySquare = SKShapeNode(rect: CGRect(x: -170, y: -104, width: 340, height: 208))
+    private let menuButton     = SKLabelNode(text: "‹ Menu")
 
-    // Computed in didMove(to:) once the scene size is known
+    // Computed in didChangeSize once the scene size is known
     private var joystickYOffset: CGFloat = 250
 
     // MARK: - Controllers
@@ -26,6 +29,16 @@ final class GameScene: SKScene {
 
     // MARK: - Timing
     private var lastUpdateTime: TimeInterval = 0
+
+    // MARK: - Init
+    init(size: CGSize, trackConfig: TrackConfig) {
+        self.trackConfig = trackConfig
+        super.init(size: size)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) not supported")
+    }
 
     // MARK: - Setup
     override func didMove(to view: SKView) {
@@ -38,15 +51,15 @@ final class GameScene: SKScene {
 
     override func didChangeSize(_ oldSize: CGSize) {
         guard size.height > 0 else { return }
-        joystickYOffset = size.height / 2 - 80 - 20
+        joystickYOffset = size.height / 2 - 104 - 20
         joystickNode.position = CGPoint(x: 0, y: -joystickYOffset)
     }
 
     private func setupWorld() {
         addChild(worldNode)
-        worldNode.addChild(track)
+        worldNode.addChild(Track(config: trackConfig))
         worldNode.addChild(motorcycle)
-        motorcycle.position = Track.startPosition
+        motorcycle.position = trackConfig.startPosition
     }
 
     private func setupCamera() {
@@ -56,28 +69,34 @@ final class GameScene: SKScene {
     }
 
     private func setupHUD() {
-        // Container positioned below screen center
+        // Joystick container
         joystickNode.position = CGPoint(x: 0, y: -joystickYOffset)
         cameraNode.addChild(joystickNode)
 
-        // Boundary square
         boundarySquare.strokeColor = UIColor(white: 0.5, alpha: 0.4)
         boundarySquare.lineWidth = 1
         boundarySquare.fillColor = .clear
         joystickNode.addChild(boundarySquare)
 
-        // Crosshair lines
         let hLine = makeLine(from: CGPoint(x: -20, y: 0), to: CGPoint(x: 20, y: 0))
         let vLine = makeLine(from: CGPoint(x: 0, y: -20), to: CGPoint(x: 0, y: 20))
         crosshairNode.addChild(hLine)
         crosshairNode.addChild(vLine)
         joystickNode.addChild(crosshairNode)
 
-        // Input dot
         inputDotNode.fillColor = .white
         inputDotNode.strokeColor = .clear
-        inputDotNode.position = .zero
         joystickNode.addChild(inputDotNode)
+
+        // Menu button — top-left of camera view
+        menuButton.fontName = "AvenirNext-Medium"
+        menuButton.fontSize = 22
+        menuButton.fontColor = UIColor(white: 1, alpha: 0.7)
+        menuButton.horizontalAlignmentMode = .left
+        menuButton.verticalAlignmentMode = .top
+        // Positioned after didChangeSize sets the size; use a safe default offset
+        menuButton.position = CGPoint(x: -size.width / 2 + 20, y: size.height / 2 - 20)
+        cameraNode.addChild(menuButton)
     }
 
     private func makeLine(from: CGPoint, to: CGPoint) -> SKShapeNode {
@@ -102,16 +121,17 @@ final class GameScene: SKScene {
 
         motorcycle.update(dt: dt, input: inputController.state)
 
-        // Camera follows bike, rotated so bike faces screen-up
         cameraNode.position = motorcycle.position
         cameraNode.zRotation = -motorcycle.bikeHeading
 
-        // HUD dot
         updateHUDDot()
+
+        // Keep menu button fixed at top-left regardless of scene size
+        menuButton.position = CGPoint(x: -size.width / 2 + 20, y: size.height / 2 - 20)
     }
 
     private func updateHUDDot() {
-        let input = inputController.state
+        let input  = inputController.state
         let offset = inputController.touchOffsetInScreen
 
         inputDotNode.position = offset
@@ -127,14 +147,23 @@ final class GameScene: SKScene {
 
     // MARK: - Touch Handling
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard activeTouch == nil, let touch = touches.first else { return }
+        guard let touch = touches.first else { return }
+
+        // Menu button hit-test (in camera/screen space)
+        let locInCamera = touch.location(in: cameraNode)
+        if menuButton.contains(locInCamera) {
+            goToMenu()
+            return
+        }
+
+        guard activeTouch == nil else { return }
         activeTouch = touch
-        handleTouch(touch)
+        handleJoystickTouch(touch)
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let active = activeTouch, touches.contains(active) else { return }
-        handleTouch(active)
+        handleJoystickTouch(active)
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -149,11 +178,16 @@ final class GameScene: SKScene {
         inputController.reset()
     }
 
-    private func handleTouch(_ touch: UITouch) {
+    private func handleJoystickTouch(_ touch: UITouch) {
         guard let view = view else { return }
-        // Use UIKit coordinates (Y increases downward) — NOT scene coordinates
         let location = touch.location(in: view)
         let center = CGPoint(x: view.bounds.midX, y: view.bounds.midY + joystickYOffset)
         inputController.update(touchLocation: location, viewCenter: center)
+    }
+
+    private func goToMenu() {
+        let menu = MenuScene(size: size)
+        menu.scaleMode = .resizeFill
+        view?.presentScene(menu, transition: SKTransition.fade(withDuration: 0.4))
     }
 }
