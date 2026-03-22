@@ -1,0 +1,350 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0479E4FC3F657F68A1CCFD81 /* Motorcycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CD059FCA0BDBDA45FEEFCF /* Motorcycle.swift */; };
+		07A69EE57B32BC3CE19B8BC0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D2C7C1E7799F04504666F6 /* GameViewController.swift */; };
+		4B70990A1388BEC5DED0A174 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C0E3094DFE83C7E13A6269 /* SpriteKit.framework */; };
+		5C6E8C22871CCEF29C5962B7 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5E0CE7E24EA1FAECB14E8 /* Track.swift */; };
+		64B851826933E593F48CC2D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB78846E44ADF0F8A55CF0C /* AppDelegate.swift */; };
+		673E8132C70E2388B2713626 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BF03FD557E00E193435C24 /* GameScene.swift */; };
+		A468F9D796984B9F4D995B9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC0404C18209C8DEC2E4A365 /* Assets.xcassets */; };
+		EAE8C2F0F18ABA6F4B8E23AB /* InputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7095C72C7C18C92D94B6BBD /* InputController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0CB78846E44ADF0F8A55CF0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1BF5E0CE7E24EA1FAECB14E8 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		87CD059FCA0BDBDA45FEEFCF /* Motorcycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motorcycle.swift; sourceTree = "<group>"; };
+		89D2C7C1E7799F04504666F6 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		921C56AEDEB560707310FC65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		97C0E3094DFE83C7E13A6269 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		AC0404C18209C8DEC2E4A365 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B3965DEDFFA62B23003BF453 /* MotoGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotoGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7095C72C7C18C92D94B6BBD /* InputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputController.swift; sourceTree = "<group>"; };
+		D5BF03FD557E00E193435C24 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		70F9D2FE08664E1F0A04AD4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B70990A1388BEC5DED0A174 /* SpriteKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		797F99C52C88FBCA2E470F9D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				97C0E3094DFE83C7E13A6269 /* SpriteKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		85EEAB19786D185607F4A8C4 = {
+			isa = PBXGroup;
+			children = (
+				90D1F2D4496A96F118E6EA95 /* MotoGame */,
+				797F99C52C88FBCA2E470F9D /* Frameworks */,
+				F414E9D2DE699D5A2A2ADBBC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		90D1F2D4496A96F118E6EA95 /* MotoGame */ = {
+			isa = PBXGroup;
+			children = (
+				0CB78846E44ADF0F8A55CF0C /* AppDelegate.swift */,
+				AC0404C18209C8DEC2E4A365 /* Assets.xcassets */,
+				D5BF03FD557E00E193435C24 /* GameScene.swift */,
+				89D2C7C1E7799F04504666F6 /* GameViewController.swift */,
+				921C56AEDEB560707310FC65 /* Info.plist */,
+				B7095C72C7C18C92D94B6BBD /* InputController.swift */,
+				87CD059FCA0BDBDA45FEEFCF /* Motorcycle.swift */,
+				1BF5E0CE7E24EA1FAECB14E8 /* Track.swift */,
+			);
+			path = MotoGame;
+			sourceTree = "<group>";
+		};
+		F414E9D2DE699D5A2A2ADBBC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B3965DEDFFA62B23003BF453 /* MotoGame.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2E9F503D0B149E19F04E3A24 /* MotoGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 049065F7C0D1A320F79AC62D /* Build configuration list for PBXNativeTarget "MotoGame" */;
+			buildPhases = (
+				7593D8A14A374FA014FF4B95 /* Sources */,
+				309DC687BCC24225FFCDEE77 /* Resources */,
+				70F9D2FE08664E1F0A04AD4D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MotoGame;
+			packageProductDependencies = (
+			);
+			productName = MotoGame;
+			productReference = B3965DEDFFA62B23003BF453 /* MotoGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		242076B7169D722A7F12E948 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = 1269F96F6225AB6535D7418D /* Build configuration list for PBXProject "MotoGame" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 85EEAB19786D185607F4A8C4;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = F414E9D2DE699D5A2A2ADBBC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2E9F503D0B149E19F04E3A24 /* MotoGame */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		309DC687BCC24225FFCDEE77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A468F9D796984B9F4D995B9B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7593D8A14A374FA014FF4B95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64B851826933E593F48CC2D0 /* AppDelegate.swift in Sources */,
+				673E8132C70E2388B2713626 /* GameScene.swift in Sources */,
+				07A69EE57B32BC3CE19B8BC0 /* GameViewController.swift in Sources */,
+				EAE8C2F0F18ABA6F4B8E23AB /* InputController.swift in Sources */,
+				0479E4FC3F657F68A1CCFD81 /* Motorcycle.swift in Sources */,
+				5C6E8C22871CCEF29C5962B7 /* Track.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		812AB6753714409ECB65FCFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = F9R7FLTVCV;
+				INFOPLIST_FILE = MotoGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.motogame.MotoGame;
+				SDKROOT = iphoneos;
+				SUPPORTED_INTERFACE_ORIENTATIONS_IPAD = UIInterfaceOrientationPortrait;
+				SUPPORTED_INTERFACE_ORIENTATIONS_IPHONE = UIInterfaceOrientationPortrait;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8249CEA4F09CE06248EF1B84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		D80748436990FDFF11ED65DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = F9R7FLTVCV;
+				INFOPLIST_FILE = MotoGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.motogame.MotoGame;
+				SDKROOT = iphoneos;
+				SUPPORTED_INTERFACE_ORIENTATIONS_IPAD = UIInterfaceOrientationPortrait;
+				SUPPORTED_INTERFACE_ORIENTATIONS_IPHONE = UIInterfaceOrientationPortrait;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DDFE93E62DCAEBEF2D549F59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		049065F7C0D1A320F79AC62D /* Build configuration list for PBXNativeTarget "MotoGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D80748436990FDFF11ED65DA /* Debug */,
+				812AB6753714409ECB65FCFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		1269F96F6225AB6535D7418D /* Build configuration list for PBXProject "MotoGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8249CEA4F09CE06248EF1B84 /* Debug */,
+				DDFE93E62DCAEBEF2D549F59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 242076B7169D722A7F12E948 /* Project object */;
+}
